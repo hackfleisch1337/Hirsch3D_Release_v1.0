@@ -101,7 +101,9 @@ int main(int argc, char** argv) {
 
 ## How to compile (MinGW GCC)
 ---
-Run this command on the Windows Terminal. Make sure that you have MinGW installed on your computer and added it to *PATH*.
+Run this command on the Windows Terminal. Make sure that you have MinGW installed on your computer and added it to *PATH*. <br>
+The *-I* and *-L* option require the path to the ```include``` and the ```lib``` folder. The command below contains the path <br>
+when the downloaded folder is in the directory when the command is executed. So make sure the boath paths are correct.
 ```bat
 g++ Main.cpp -IHirsch3D_Release_v1.0/include -LHirsch3D_Release_v1.0/lib -lglew32 -lSDL2main -lopengl32 -lHirsch3D -oProgramm.exe
 ```
