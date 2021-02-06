@@ -75,7 +75,7 @@ private:
 
     }
 
-    void render(h3d::Renderer &r) override {
+    void render(const h3d::Renderer &r) override {
         scene.render(r); // renders the scene
     }
 
