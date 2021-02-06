@@ -1,5 +1,5 @@
 # Hirsch 3D Renderengine Version *0.8.6*
-[![Release](https://img.shields.io/github/tag/hackfleisch1337/Hirsch3D_Release_v1.0.svg)](https://github.com/hackfleisch1337/Hirsch3D_Release_v1.0/releases)
+[![Release](https://img.shields.io/github/tag/hackfleisch1337/Hirsch3D_Release_v1.0.svg)](https://github.com/hackfleisch1337/Hirsch3D_Release_v1.0/tags)
 [![Issues](https://img.shields.io/github/issues/hackfleisch1337/Hirsch3D_Release_v1.0.svg)](https://github.com/hackfleisch1337/Hirsch3D_Release_v1.0/issues)
 [![Contributors](https://img.shields.io/github/contributors/hackfleisch1337/Hirsch3D_Release_v1.0.svg)](https://github.com/hackfleisch1337/Hirsch3D_Release_v1.0/graphs/contributors)
 ---
