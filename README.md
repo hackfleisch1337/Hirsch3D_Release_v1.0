@@ -9,7 +9,7 @@
 ## About
 The Hirsch 3D Renderengine is a Gameengine Library for C++.
 It supports rendering OBJ files with textures, materials and normalmaps.
-
+This is the release version. For the source code see the [Development Version](https://github.com/hackfleisch1337/Hirsch3D_Develop_Version).
 ## License
 ---
 ## MIT Licence *(Modified)*
