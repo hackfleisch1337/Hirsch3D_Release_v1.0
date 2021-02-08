@@ -6,7 +6,7 @@
 namespace h3d
 {
     class IndexBuffer {
-        public:
+    public:
         IndexBuffer(uint32_t* indices, uint32_t amountOfIndices);
         void bind();
         void unbind();

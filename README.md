@@ -1,4 +1,7 @@
 # Hirsch 3D Renderengine Version *0.8.6*
+[![Release](https://img.shields.io/github/tag/hackfleisch1337/Hirsch3D_Release_v1.0.svg)](https://github.com/hackfleisch1337/Hirsch3D_Release_v1.0/tags)
+[![Issues](https://img.shields.io/github/issues/hackfleisch1337/Hirsch3D_Release_v1.0.svg)](https://github.com/hackfleisch1337/Hirsch3D_Release_v1.0/issues)
+[![Contributors](https://img.shields.io/github/contributors/hackfleisch1337/Hirsch3D_Release_v1.0.svg)](https://github.com/hackfleisch1337/Hirsch3D_Release_v1.0/graphs/contributors)
 ---
 ![Hirsch3D.png](md/Hirsch3D.png)
 
@@ -6,7 +9,7 @@
 ## About
 The Hirsch 3D Renderengine is a Gameengine Library for C++.
 It supports rendering OBJ files with textures, materials and normalmaps.
-
+This is the release version. For the source code see the [Development Version](https://github.com/hackfleisch1337/Hirsch3D_Develop_Version).
 ## License
 ---
 ## MIT Licence *(Modified)*
@@ -72,7 +75,7 @@ private:
 
     }
 
-    void render(h3d::Renderer &r) override {
+    void render(const h3d::Renderer &r) override {
         scene.render(r); // renders the scene
     }
 
@@ -98,9 +101,12 @@ int main(int argc, char** argv) {
 
 ## How to compile (MinGW GCC)
 ---
-Run this command on the Windows Terminal. Make sure that you have MinGW installed on your computer and added it to *PATH*.
+Run this command on the Windows Terminal. Make sure that you have MinGW installed on your computer and added it to *PATH*. <br>
+The `-I` and `-L` option require the path to the `include` and the `lib` folder. The command below contains the path <br>
+when the downloaded folder is in the directory where the command is executed. So make sure the both paths are correct. Hirsch3D uses <br>
+the POSIX Threads for Multithreading. You have to install pthread with the MinGW installer.
 ```bat
-g++ Main.cpp -IHirsch3D_Release_v1.0/include -LHirsch3D_Release_v1.0/lib -lglew32 -lSDL2main -lopengl32 -lHirsch3D -oProgramm.exe
+g++ Main.cpp -IHirsch3D_Release_v1.0/include -LHirsch3D_Release_v1.0/lib -lglew32 -lSDL2main -lopengl32 -lHirsch3D -lpthread -oProgramm.exe
 ```
 Execute:
 ```
