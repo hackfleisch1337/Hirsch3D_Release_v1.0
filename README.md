@@ -65,7 +65,7 @@ private:
     h3d::Camera camera; // The camera
 
     void setup() override {
-        sphere.loadByPath("sphere.obj",h3d::color::cobalt_blue, nullptr); // nullptr = no texture
+        sphere.loadByPath("sphere.obj",h3d::color::cobalt_blue, nullptr, nullptr, nullptr); // nullptr = no texture
         camera.init(100, 1920, 1080); // FOV, width, height
         camera.translate({0,0,3}); // Move camera backward
         camera.update();
