@@ -18,8 +18,8 @@ namespace h3d
     public:
         void load(std::string path);
         void loadTtf(uint8_t* ttfBuffer);
-        void bind();
-        void unbind();
+        virtual void bind();
+        virtual void unbind();
         virtual ~Texture(){
             std::cout << GREEN << "[OK] Deleted Texture Buffer Data" << RESET_CLR << std::endl;
             glDeleteTextures(1, &buffer);
@@ -28,13 +28,27 @@ namespace h3d
         int32_t getHeight() {return height;}
         std::string getPath() {return this->path;}
         bool loaded() { return hasLoaded; }
+    protected:
+        GLuint buffer;
     private:
         std::string path;
         int32_t width;
         int32_t height;
-        GLuint buffer;
+        
         int32_t bitsPerPixel;
         bool hasLoaded = false;
+    };
+
+    class NormalMap: public Texture {
+    public:
+        void bind() override;
+        void unbind() override;
+    };
+
+    class RoughnessMap: public Texture {
+    public: 
+        void bind() override;
+        void unbind() override;
     };
 
 } // namespace h3d

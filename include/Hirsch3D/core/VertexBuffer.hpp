@@ -16,6 +16,8 @@ namespace h3d
         void unbind();
         uint32_t getAmountOfVertices();
         virtual ~VertexBuffer();
+        void changeVertex(uint32_t vertex, h3d::Vertex3 newVertex);
+        h3d::Vertex3 getVertex(uint32_t vertex);
     private:
         uint32_t amountOfVertices;
         GLuint bufferId;

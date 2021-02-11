@@ -7,7 +7,7 @@
 #include "glm/glm/glm.hpp"
 #include "glm/glm/ext/matrix_transform.hpp"
 #include "glm/glm/gtc/matrix_transform.hpp"
-
+#include "Material.hpp"
 #include "Texture.hpp"
 #include <fstream>
 
@@ -19,8 +19,9 @@ namespace h3d
     public:
         
         virtual ~Object();
-        void load(void* vertices, uint32_t amountOfVertices, uint32_t* indices, uint32_t amountOfIndices, glm::vec4 color, h3d::Texture *texture);
-        void loadByPath(std::string, glm::vec4, h3d::Texture*);
+        void load(void* vertices, uint32_t amountOfVertices, uint32_t* indices, uint32_t amountOfIndices, glm::vec4 color,
+                    h3d::Texture *texture, h3d::NormalMap* nmap, h3d::RoughnessMap* r);
+        void loadByPath(std::string, glm::vec4, h3d::Texture*, h3d::NormalMap* nmap, h3d::RoughnessMap* r);
         VertexBuffer* getVertexBuffer() const {
             return this->vertices;
         }
@@ -33,10 +34,14 @@ namespace h3d
         bool loaded() const {return hasLoaded;}
         void move(glm::vec3 d);
         void moveInLineOfSight(glm::vec3 d);
+        void setMaterial(h3d::Material m);
         glm::vec3 getPosition();
         glm::vec3 position;
         h3d::Texture* getTexture() {return texture;}
         glm::vec3 getRotation() {return this->rotationVector;}
+        h3d::NormalMap* getNormalMap() {return this->nmap;}
+        h3d::RoughnessMap* getRoughnessMap() {return this->rm;}
+        h3d::Material getMaterial() {return this->material;}
     protected:
         glm::mat4 modelMatrix;
         glm::vec3 rotationVector;
@@ -47,6 +52,9 @@ namespace h3d
         h3d::IndexBuffer* indices;
         uint32_t amountOfIndices;
         h3d::Texture* texture;
+        h3d::NormalMap* nmap;
+        h3d::RoughnessMap* rm;
+        h3d::Material material;
     };
 
 
