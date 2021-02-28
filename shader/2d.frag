@@ -8,12 +8,17 @@ uniform sampler2D u_texture;
 uniform int isSamplerSet;
 
 void main() {
+    vec4 f_color = vec4(1);
     if(isSamplerSet != 1) {
-        color = u_color;        
+        f_color = u_color;        
     } else {
         vec4 tColor = texture(u_texture, v_uv);
         
         
-        color = tColor;
+        f_color = tColor;
     }
+    if(f_color.a < 0.5) {
+        discard;
+    } 
+    color = f_color;
 }

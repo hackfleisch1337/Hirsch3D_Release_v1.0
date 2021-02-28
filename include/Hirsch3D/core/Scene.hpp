@@ -22,16 +22,21 @@ namespace h3d
 
     class Scene {
     public:
-        void load(std::string vertexShaderSrc, std::string fragmentShaderSrc, h3d::Camera* camera, float ambient = 0.1f);
+        void load(std::string vertexShaderSrc, std::string fragmentShaderSrc, std::string geometryShaderSrc,h3d::Camera* camera, float ambient = 0.1f);
         void load(h3d::Camera* camera, float ambient = 0.1f);
         void addObject(h3d::Object* o);
-        // void addLight(h3d::PointLight &p);
+        void addDirectionalLight(h3d::DirectionalLight* l);
+        void addPointLight(h3d::PointLight* l);
+        void addSpotLight(h3d::SpotLight* l);
         virtual void render(const h3d::Renderer &r);
         float ambient;
 
     protected:
         h3d::Shader shader;
         std::vector<h3d::Object*> objects;
+        std::vector<h3d::DirectionalLight*> dlights;
+        std::vector<h3d::PointLight*> plights;
+        std::vector<h3d::SpotLight*> slights;
         h3d::Camera* camera;
     };
 

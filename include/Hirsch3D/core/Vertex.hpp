@@ -7,7 +7,6 @@ namespace h3d
 {
     struct Vertex3 {
 
-
         float x;
         float y;
         float z;
