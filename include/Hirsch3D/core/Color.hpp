@@ -31,10 +31,7 @@ namespace color {
         // BLACK
         const glm::vec4 black(0.0f, 0.0f, 0.0f, 1.0f);
         const glm::vec4 dark_purple = RGB_TO_OPENGL(28.0f, 1.0f, 24.0f);
-<<<<<<< HEAD
         const glm::vec4 dark_gray = RGB_TO_OPENGL(15.0f, 15.0f, 15.0f);
-=======
->>>>>>> c19cbcd85e42d5c398b0d513ced2d27bb6ed59d3
 
         // WHITE
         const glm::vec4 white(1.0f, 1.0f, 1.0f, 1.0f);
