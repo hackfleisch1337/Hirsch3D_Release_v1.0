@@ -1,4 +1,4 @@
-# Hirsch 3D Renderengine Version *0.8.6*
+# Hirsch 3D Renderengine Version *0.9.1*
 [![Release](https://img.shields.io/github/tag/hackfleisch1337/Hirsch3D_Release_v1.0.svg)](https://github.com/hackfleisch1337/Hirsch3D_Release_v1.0/tags)
 [![Issues](https://img.shields.io/github/issues/hackfleisch1337/Hirsch3D_Release_v1.0.svg)](https://github.com/hackfleisch1337/Hirsch3D_Release_v1.0/issues)
 [![Contributors](https://img.shields.io/github/contributors/hackfleisch1337/Hirsch3D_Release_v1.0.svg)](https://github.com/hackfleisch1337/Hirsch3D_Release_v1.0/graphs/contributors)
@@ -65,7 +65,7 @@ private:
     h3d::Camera camera; // The camera
 
     void setup() override {
-        sphere.loadByPath("sphere.obj",h3d::color::cobalt_blue, nullptr); // nullptr = no texture
+        sphere.loadByPath("sphere.obj",h3d::color::cobalt_blue, nullptr, nullptr, nullptr); // nullptr = no texture
         camera.init(100, 1920, 1080); // FOV, width, height
         camera.translate({0,0,3}); // Move camera backward
         camera.update();
