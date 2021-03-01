@@ -16,17 +16,51 @@ namespace h3d
     
     class Texture {
     public:
+        /**
+         * Loads a texture from a file
+         * 
+         * @param path The path and filename of the texture
+         * 
+         */
         void load(std::string path);
         void loadTtf(uint8_t* ttfBuffer);
+        /**
+         * Binds the texture
+         * 
+         */
         virtual void bind();
+        /**
+         * Unbinds the texture
+         * 
+         */
         virtual void unbind();
         virtual ~Texture(){
             std::cout << GREEN << "[OK] Deleted Texture Buffer Data" << RESET_CLR << std::endl;
             glDeleteTextures(1, &buffer);
         }
+
+        /**
+         * 
+         * @returns the texture width in pixels
+         */
         int32_t getWidth() {return width;}
+
+        /**
+         * 
+         * @returns the texture height in pixels
+         */
         int32_t getHeight() {return height;}
+
+        /**
+         * 
+         * @returns the path of the texture
+         */
         std::string getPath() {return this->path;}
+
+        /**
+         * 
+         * @returns true if the texture is loaded
+         */
         bool loaded() { return hasLoaded; }
     protected:
         GLuint buffer;

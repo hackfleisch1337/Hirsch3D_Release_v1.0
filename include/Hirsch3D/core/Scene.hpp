@@ -22,12 +22,65 @@ namespace h3d
 
     class Scene {
     public:
+        /**
+         * Inititalizes the scene
+         * 
+         * @param vertexShaderSrc path to the vertex shader source file
+         * @param fragmentShaderSrc path to the fragment shader source file
+         * @param geometryShaderSrc path to the geometry shader source file
+         * @param camera Pointer to the scenes camera
+         * @param ambient intensity of the scenes ambient light (default=0.1f)
+         * 
+         */
         void load(std::string vertexShaderSrc, std::string fragmentShaderSrc, std::string geometryShaderSrc,h3d::Camera* camera, float ambient = 0.1f);
+        
+        /**
+         * Inititalizes the scene with the default shader
+         * 
+         * @param camera Pointer to the scenes camera
+         * @param ambient intensity of the scenes ambient light (default=0.1f)
+         * 
+         */
         void load(h3d::Camera* camera, float ambient = 0.1f);
+
+        /**
+         * Adds an object to the scene
+         * 
+         * @param o A pointer to the object
+         * 
+         */
         void addObject(h3d::Object* o);
+
+        /**
+         * Adds a directional light to the scene
+         * 
+         * @param l A pointer to the directional light
+         * 
+         */
         void addDirectionalLight(h3d::DirectionalLight* l);
+
+        /**
+         * Adds a point light to the scene
+         * 
+         * @param l A pointer to the point light
+         * 
+         */
         void addPointLight(h3d::PointLight* l);
+
+        /**
+         * Adds a spot light to the scene
+         * 
+         * @param l A pointer to the spot light
+         * 
+         */
         void addSpotLight(h3d::SpotLight* l);
+
+        /**
+         * Renders the scene
+         * 
+         * 
+         * @param r The Hirsch3D Renderer
+         */
         virtual void render(const h3d::Renderer &r);
         float ambient;
 
@@ -38,6 +91,7 @@ namespace h3d
         std::vector<h3d::PointLight*> plights;
         std::vector<h3d::SpotLight*> slights;
         h3d::Camera* camera;
+        bool isLoaded = false;
     };
 
     /**
@@ -49,7 +103,21 @@ namespace h3d
 
     class Scene2D: public Scene {
     public:
+        /**
+         * Loads a 2D scene
+         * 
+         * @param width The width of the scene in pixels
+         * @param height The height of the scene in pixels
+         * 
+         */
         void load2D(float width, float height);
+
+        /**
+         * Renders the scene
+         * 
+         * 
+         * @param r The Hirsch3D Renderer
+         */
         void render(const h3d::Renderer &r) override;
     private:
 

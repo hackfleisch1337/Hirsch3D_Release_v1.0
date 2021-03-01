@@ -178,7 +178,7 @@ void main() {
 
     // Spotlight
     for(int i = 0; i < amountOfSlights; i++) {
-        vec3 light = normalize(slights[i].position - v_position);
+        vec3 light = normalize(slights[i].position - v_vertex_pos);
         vec3 lightColor = slights[i].color * slights[i].brightness;
         if(u_specColor == vec3(-1,-1,-1)) {
             specColor = lightColor * vec3(f_color);
@@ -193,9 +193,9 @@ void main() {
         vec3 c_specular = vec3(0);
         if(theta > slights[i].outerCone) {
             c_deffuse += intensity * max(dot(normal, light), 0.0) * vec3(f_color);
-            c_specular += intensity * pow(max(dot(reflection, view), 0.000001), shininess) * specColor * abs(deffuse);
+            c_specular += intensity * pow(max(dot(reflection, view), 0.0), shininess) * specColor * abs(deffuse);
         } else {
-            ambient += u_ambient * slights[i].color * specColor;
+           ambient += u_ambient * slights[i].color * specColor;
         }
         c_deffuse.x *= slights[i].color.x;
         c_deffuse.y *= slights[i].color.y;

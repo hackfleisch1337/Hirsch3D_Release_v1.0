@@ -36,6 +36,8 @@
 #include <SDL/SDL.h>
 #include <ctime>
 
+#include "error/Exception.hpp"
+
 // Hirsch3D core
 #include "core/Vertex.hpp"
 #include "core/VertexBuffer.hpp"
@@ -50,16 +52,24 @@
 
 namespace h3d {
 
-
+    /**
+     * Renders the objects
+     * 
+     */
     class Renderer {
     public:
+        /**
+         * 
+         * Renders an object. Shaders must be set before.
+         *
+         * @param o A pointer to the object to be rendered
+         */
         void renderObject(const h3d::Object* o) const;
     };
 
     class Hirsch3D {
 
     protected:
-
         virtual void render(const h3d::Renderer&) = 0;
         virtual void setup() = 0;
         virtual void onClose() = 0;
@@ -68,25 +78,63 @@ namespace h3d {
         virtual void onKeyDown(SDL_Keycode key) {}
         virtual void onKeyUp(SDL_Keycode key) {}
 
-        void setTitle(std::string);
-        void setSize(uint16_t, uint16_t);
+        /**
+         * Sets the window title
+         * @param s The title to be set
+         * 
+         */
+        void setTitle(std::string s);
+        /**
+         * Sets the window size
+         * @param width The width in pixels
+         * @param height The height in pixels
+         */
+        void setSize(uint16_t width, uint16_t height);
     public:
         #define HIRSCH3D_NOFLAG     0b00000000
         #define HIRSCH3D_FULLSCREEN 0b00000001
         #define HIRSCH3D_BORDERLESS 0b00000010
         #define HIRSCH3D_MINIMIZED  0b00000100
         
+        /**
+         * Inits the Hirsch3D Programm
+         * 
+         * @param title The window title
+         * @param width The window with
+         * @param height The window height
+         * @param flags Flags
+         * 
+         */
         bool init(std::string title, uint16_t width, uint16_t height, uint8_t flags);
+        /**
+         * Starts the programm. Initialized and loaded requiered before.
+         */
         bool start();
+
+        /**
+         * Loads the programms resources.
+         * Initialization requiered before.
+         * 
+         */
         bool load();
 
         virtual ~Hirsch3D();
+
+        /**
+         * Sets the maximum framerate. Default framerate: 60 fps
+         * 
+         * @param fps the amount of maximal frames per second
+         * 
+         */
         void setFps(uint16_t fps) {
             if(fps > 0) {
                 this->fps = fps;
             }
         }
 
+        /**
+         * Returns the amount of time since the start of the programm in millisecond.
+         */
         uint32_t getCurrentTimeMillies();
 
     private:
