@@ -1,16 +1,25 @@
 /**
+ * Hirsch3D Renderengine v.0.9.6
+ * For more informations see README.md
+ * or read the documentation in the doc folder
+ * GitHub Repository: https://github.com/hackfleisch1337/Hirsch3D_Release_v1.0
+ * Licence: MIT Licence
+ * Last changes: 02.03.2021 (DD.MM.YYYY)
+ * 
  * @file Hirsch3D/Hirsch3D.hpp
- * @ref Hirsch3d/core
+ * @ref Hirsch3d/.
  *
  * @author Emanuel Zache
- * @version 0.9.1
+ * @version 0.9.6
  * @copyright (C) 2021 Emanuel Zache
  *
- * @brief Hirsch3D is a 3D Renderengine based on OpenGl
+ *
  * 
- * Hirsch3D.hpp is the main file
+ * 
+ * 
+ * 
  *
- *
+ * 
  *
  */
 
@@ -22,7 +31,7 @@
 #include <string>
 #include <vector>
 
-#define HIRSCH3D_VERSION "0.9.1"
+#define HIRSCH3D_VERSION "0.9.6"
 #define YELLOW "\033[93m"
 #define RED "\033[91m"
 #define GREEN "\033[92m"
@@ -99,6 +108,8 @@ namespace h3d {
         /**
          * Inits the Hirsch3D Programm
          * 
+         * @returns true on success
+         * 
          * @param title The window title
          * @param width The window with
          * @param height The window height
@@ -109,11 +120,12 @@ namespace h3d {
         /**
          * Starts the programm. Initialized and loaded requiered before.
          */
-        bool start();
+        void start();
 
         /**
          * Loads the programms resources.
          * Initialization requiered before.
+         * @returns true on success
          * 
          */
         bool load();
@@ -135,7 +147,7 @@ namespace h3d {
         /**
          * Returns the amount of time since the start of the programm in millisecond.
          */
-        uint32_t getCurrentTimeMillies();
+        uint32_t getCurrentTimeMillis();
 
     private:
         SDL_Window* window;

@@ -26,6 +26,7 @@ uniform float u_shininess;
 uniform float u_specIntensity;
 uniform float u_kD;
 uniform vec3 u_specColor;
+uniform vec3 u_emmisive;
 
 // TBN Matrix
 
@@ -208,7 +209,7 @@ void main() {
     // Lightcolor
 
 
-    color = vec4(ambient + (deffuse * Kd) + (specular * specIntensity), 1.0);
+    color = vec4(ambient + (deffuse * Kd) + (specular * specIntensity) + u_emmisive, 1.0);
     
 
     

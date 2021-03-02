@@ -1,3 +1,29 @@
+/**
+ * Hirsch3D Renderengine v.0.9.6
+ * For more informations see README.md
+ * or read the documentation in the doc folder
+ * GitHub Repository: https://github.com/hackfleisch1337/Hirsch3D_Release_v1.0
+ * Licence: MIT Licence
+ * Last changes: 02.03.2021 (DD.MM.YYYY)
+ * 
+ * @file Hirsch3D/core/Object.hpp
+ * @ref Hirsch3d/core
+ *
+ * @author Emanuel Zache
+ * @version 0.9.6
+ * @copyright (C) 2021 Emanuel Zache
+ *
+ *
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ *
+ */
+
+
 #ifndef HIRSCH3D_OBJECT
 #define HIRSCH3D_OBJECT
 #include <string>
@@ -15,6 +41,10 @@
 
 namespace h3d
 {
+    /**
+     * An Hirsch3D object
+     * 
+     */
     class Object {
     public:
         
@@ -52,16 +82,12 @@ namespace h3d
         /**
          * @returns the vertex buffer
          */
-        VertexBuffer* getVertexBuffer() const {
-            return this->vertices;
-        }
+        VertexBuffer* getVertexBuffer() const {return this->vertices;}
         /**
          * 
          * @returns the index buffer
          */
-        IndexBuffer* getIndexBuffer() const {
-            return this->indices;
-        }
+        IndexBuffer* getIndexBuffer() const {return this->indices;}
 
         /**
          * @returns the model matrix
@@ -89,7 +115,8 @@ namespace h3d
          */
         bool loaded() const {return hasLoaded;}
         /**
-         * moves the object
+         * moves the object relative to the coordinate axis instead 
+         * to their viewing direction.
          * 
          * @param d The amount to move in every direction
          */
@@ -112,9 +139,7 @@ namespace h3d
          * @returns the position
          */
         glm::vec3 getPosition();
-
-        glm::vec3 position;
-        glm::vec4 color;
+       
         /**
          * @returns the texture
          */
@@ -130,7 +155,21 @@ namespace h3d
          * @returns the material
          */
         h3d::Material getMaterial() {return this->material;}
+
+        /**
+         * Sets the position
+         * 
+         * @param pos the position to be set
+         * 
+         */
+        void setPosition(glm::vec3 pos);
+        
+        /**
+         * The objects color
+         */
+        glm::vec4 color;
     protected:
+        glm::vec3 position;
         glm::mat4 modelMatrix;
         glm::vec3 rotationVector;
         h3d::VertexBuffer* vertices;
@@ -145,12 +184,39 @@ namespace h3d
         h3d::Material material;
     };
 
+
+    /**
+     * An 2D object
+     * 
+     */
     class Sprite: public h3d::Object {
 
     public:
+        /**
+         * Loads the Sprite
+         * 
+         * @param t The texture of the Sprite
+         * @param x The x position
+         * @param y The y position
+         * @param w The width of the sprite (0 = texturewidth)
+         * @param h The height of the sprite (0 = textureheight)
+         * 
+         */
+        void load(h3d::Texture* t, float x, float y, float w = 0, float h = 0);
 
-        void load(h3d::Texture* t, float x, float y, float w = 0, float height = 0);
+        /**
+         * Moves the sprite along 2D space
+         * 
+         * @param x The amount the sprite will move on the x axis in pixels
+         * @param y The amount the sprite will move on the y axis in pixels
+         * 
+         */
         void move(float x, float y);
+
+        /**
+         * Rotates the sprite clockwise in 2D space (along the x axis)
+         * @param degree The angle in degrees
+         */
         void rotate(float degree);
     };
 

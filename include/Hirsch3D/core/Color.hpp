@@ -1,7 +1,37 @@
+/**
+ * Hirsch3D Renderengine v.0.9.6
+ * For more informations see README.md
+ * or read the documentation in the doc folder
+ * GitHub Repository: https://github.com/hackfleisch1337/Hirsch3D_Release_v1.0
+ * Licence: MIT Licence
+ * Last changes: 02.03.2021 (DD.MM.YYYY)
+ * 
+ * @file Hirsch3D/core/Color.hpp
+ * @ref Hirsch3d/core
+ *
+ * @author Emanuel Zache
+ * @version 0.9.6
+ * @copyright (C) 2021 Emanuel Zache
+ *
+ *
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ *
+ */
+
+
 #ifndef HIRSCH3D_COLOR_HPP
 #define HIRSCH3D_COLOR_HPP
 #include "glm/glm/glm.hpp"
 
+/**
+ * hirsch3D colors
+ * 
+ */
 namespace color {
         #define RGB_TO_OPENGL(r,g,b) glm::vec4((float)r/255,(float) g/255, (float)b/255, 1.0f)
         #define OPENGL_TO_RGB(r,g,b) glm::vec4((int) (r*255), (int) (g*255), (int) (b*255), 1.0f);

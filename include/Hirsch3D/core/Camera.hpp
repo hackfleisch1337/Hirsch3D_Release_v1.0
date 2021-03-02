@@ -1,3 +1,29 @@
+/**
+ * Hirsch3D Renderengine v.0.9.6
+ * For more informations see README.md
+ * or read the documentation in the doc folder
+ * GitHub Repository: https://github.com/hackfleisch1337/Hirsch3D_Release_v1.0
+ * Licence: MIT Licence
+ * Last changes: 02.03.2021 (DD.MM.YYYY)
+ * 
+ * @file Hirsch3D/core/Camera.hpp
+ * @ref Hirsch3d/core
+ *
+ * @author Emanuel Zache
+ * @version 0.9.6
+ * @copyright (C) 2021 Emanuel Zache
+ *
+ *
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ *
+ */
+
+
 #ifndef HIRSCH3D_CAMERA_HPP
 #define HIRSCH3D_CAMERA_HPP
 
@@ -7,6 +33,10 @@
 
 namespace h3d
 {
+    /**
+     * A camera which rotates around the origin
+     * 
+     */
     class Camera {
     public:
         /**
@@ -17,13 +47,7 @@ namespace h3d
          * @param height The height of the viewspace
          * 
          */
-        void init(float fov, float width, float height) {
-            projection = glm::perspective((float) glm::radians(fov)/2.0f, width/height, 0.01f, 1000.0f);
-            view = glm::mat4(1.0f);
-            pos = glm::vec3(0.0f);
-            initialized = true;
-            update();
-        }
+        void init(float fov, float width, float height);
 
         /**
          * Initializes a orthographic camera
@@ -31,50 +55,42 @@ namespace h3d
          * @param viewSpaceWidth The width of the viewspace
          * @param viewSpaceHeight The height of the viewspace
          */
-        void init(float viewSpaceWidth, float viewSpaceHeight) {
-            projection = glm::ortho(- (viewSpaceWidth/2), viewSpaceWidth/2, -(viewSpaceHeight/2), viewSpaceHeight/2);
-            view = glm::mat4(1.0f);
-            pos = glm::vec3(0.0f);
-            initialized = true;
-            update();
-        }
+        void init(float viewSpaceWidth, float viewSpaceHeight) ;
 
-        glm::mat4 getViewProj() {
-            return this->viewProj;
-        }
+
+        /**
+         * @returns View Projection matrix (projection * view)
+         * 
+         */
+        glm::mat4 getViewProj();
 
         /**
          * Updates the cameras position and viewing direction
          */
-        virtual void update() {
-            if(!initialized) return;
-            viewProj = projection * view;
-        }
+        virtual void update();
 
         /**
          * moves the camera
          */
-        virtual void translate(glm::vec3 v) {
-            if(!initialized) return;
-            pos += v;
-            view = glm::translate(view, v * -1.0f);
-        }
+        virtual void translate(glm::vec3 v);
 
         /**
          * Returns the camera around the origin
          */
-        void rotate(float degree, glm::vec3 d) {
-            if(!initialized) return;
-            this->view = glm::rotate(this->view, glm::radians(degree), d);
-        }
+        void rotate(float degree, glm::vec3 d);
 
-        glm::mat4 getView() {
-            return view;
-        }
+        /**
+         * @returns The view matrix
+         * 
+         */
+        glm::mat4 getView();
 
-        glm::vec3 getPosition() {
-            return pos;
-        }
+
+        /**
+         * 
+         * @returns The cameras position
+         */
+        glm::vec3 getPosition();
 
 protected:
         glm::vec3 pos;
@@ -83,7 +99,10 @@ protected:
         glm::mat4 viewProj;
         bool initialized = false;
 };
-
+/**
+ * A camera which rotates around its own center on the y and x axis
+ * 
+ */
 class FpsCamera: public Camera {
 public:
     /**
@@ -94,58 +113,42 @@ public:
      * @param height The height of the viewspace
      * 
      */
-    void initFpsCamera(float fov, float width, float height) {
-        this->init(fov, width, height);
-        up = glm::vec3(0.0f,1.0f,0.0f);
-        yaw = -90.0f;
-        pitch = 0.0f;
-        initialized = true;
-        rotate(0.0f, 0.0f);
-        update();
-    }
+    void initFpsCamera(float fov, float width, float height);
     
     /**
      * Rotates the camera
+     * 
+     * @param xRel The angle to rotate around the x axis
+     * @param yRel The angle to rotate around the y axis
      */
-    void rotate(float xRel, float yRel) {
-        if(!initialized) return;
-        yaw += xRel * mouseSensitivityX;
-        pitch -= yRel * mouseSensitivityY;
-        if(pitch > 89.0f)
-            pitch = 89.0f;
-        if(pitch < -89.0f)
-            pitch = -89.0f;
-        glm::vec3 front;
-        front.x = cos(glm::radians(pitch)) * cos(glm::radians(yaw));
-        front.y = sin(glm::radians(pitch));
-        front.z = cos(glm::radians(pitch)) * sin(glm::radians(yaw));
-        lookAt = glm::normalize(front);
-        update();
-    }
-
-    void update() override {
-        if(!initialized) return;
-        view = glm::lookAt(pos, pos + lookAt, up);
-        viewProj = projection * view;
-    }
-
-    void moveFront(float amount) {
-        if(!initialized) return;
-        translate(glm::normalize(glm::vec3(1.0f, 0.0f, 1.0f)*lookAt) * amount);
-        update();
-    }
-    void moveSideways(float amount) {
-        if(!initialized) return;
-        translate(glm::normalize(glm::cross(lookAt, up)) * amount);
-        update();
-    }
+    void rotate(float xRel, float yRel);
 
 
-    void moveUp(float amount) {
-        if(!initialized) return;
-        translate(glm::normalize(glm::vec3(0.0f, 1.0f, 0.0f)) * amount);
-        update();
-    }
+    /**
+     * Updated the cameras position and rotation
+     * 
+     */
+    void update() override;
+
+    /**
+     * Moves the camera in their viewing direction
+     * @param amount The amount the camera moves
+     */
+    void moveFront(float amount);
+
+    /**
+     * Moves the camera sideways relative to their viewing direction
+     * @param amount The amount the camera moves
+     * 
+     */
+    void moveSideways(float amount);
+
+    /**
+     * Moves the camera up relative to the viewspace
+     * @param amount The amount the camera moves
+     * 
+     */
+    void moveUp(float amount);
 
 protected:
 

@@ -1,3 +1,29 @@
+/**
+ * Hirsch3D Renderengine v.0.9.6
+ * For more informations see README.md
+ * or read the documentation in the doc folder
+ * GitHub Repository: https://github.com/hackfleisch1337/Hirsch3D_Release_v1.0
+ * Licence: MIT Licence
+ * Last changes: 02.03.2021 (DD.MM.YYYY)
+ * 
+ * @file Hirsch3D/core/Scene.hpp
+ * @ref Hirsch3d/core
+ *
+ * @author Emanuel Zache
+ * @version 0.9.6
+ * @copyright (C) 2021 Emanuel Zache
+ *
+ *
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ *
+ */
+
+
 #ifndef HIRSCH3D_SCENE_HPP
 #define HIRSCH3D_SCENE_HPP
 #include <vector>
@@ -11,7 +37,7 @@ namespace h3d
     class Renderer;
 
     /**
-     * Renderstate
+     * Renderstate for 3D objects
      *
      *
      *
@@ -19,7 +45,6 @@ namespace h3d
      *
      *
      */
-
     class Scene {
     public:
         /**
@@ -82,8 +107,8 @@ namespace h3d
          * @param r The Hirsch3D Renderer
          */
         virtual void render(const h3d::Renderer &r);
+        
         float ambient;
-
     protected:
         h3d::Shader shader;
         std::vector<h3d::Object*> objects;
@@ -100,7 +125,6 @@ namespace h3d
      *
      *
      */
-
     class Scene2D: public Scene {
     public:
         /**
